@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>e-Shark</title>
+
+  <style>
+    /*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: hsl(219, 69%, 56%);
+  --first-color-alt: hsl(219, 69%, 52%);
+  --title-color: hsl(219, 8%, 95%);
+  --text-color: hsl(219, 8%, 75%);
+  --text-color-light: hsl(219, 4%, 55%);
+  --white-color: #fff;
+  --body-color: hsl(219, 4%, 4%);
+  --container-color: hsl(219, 4%, 7%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Exo', sans-serif;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 968px) {
+  :root {
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1024px;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding: 4.5rem 0 2rem;
+}
+
+.section__title {
+  font-size: var(--h2-font-size);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.main {
+  overflow: hidden;
+}
+
+.shape {
+  background-color: hsla(219, 33%, 32%, .5);
+  filter: blur(112px);
+  border-radius: 50%;
+}
+
+.shape__big {
+  width: 400px;
+  height: 400px;
+}
+
+.shape__small {
+  width: 300px;
+  height: 300px;
+}
+
+.shape__smaller {
+  width: 180px;
+  height: 180px;
+  filter: blur(64px);
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo,
+.nav__toggle {
+  color: var(--title-color);
+  display: inline-flex;
+}
+
+.nav__logo {
+  align-items: center;
+  column-gap: .25rem;
+  font-weight: var(--font-medium);
+  transition: .3s;
+}
+
+.nav__logo i {
+  font-size: 1.25rem;
+}
+
+.nav__logo:hover {
+  color: var(--first-color);
+}
+
+.nav__toggle {
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    background-color: hsla(0, 0%, 100%, .1);
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(96px);
+    transition: .3s;
+  }
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 3rem;
+  padding-top: 9rem;
+}
+
+.nav__link {
+  text-transform: uppercase;
+  color: var(--title-color);
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-medium);
+  transition: .3s;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__close {
+  font-size: 2rem;
+  color: var(--white-color);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+/* Show menu */
+.show-menu {
+  right: 0;
+}
+
+/* Change background header */
+.scroll-header {
+  border-radius: 0 0 1rem 1rem;
+  background-color: var(--body-color);
+  box-shadow: 0 2px 4px hsla(0, 0%, 1%, 1);
+}
+
+/* Active link */
+.active-link {
+  color: var(--first-color);
+}
+
+/*=============== HOME ===============*/
+.home {
+  position: relative;
+  overflow: hidden;
+}
+
+.home__container {
+  position: relative;
+  padding-top: 4rem;
+  row-gap: 3rem;
+}
+
+.home__data {
+  text-align: center;
+}
+
+.home__title {
+  font-size: var(--h1-font-size);
+  margin-bottom: 1rem;
+}
+
+.home__subtitle {
+  font-size: var(--h3-font-size);
+  margin-bottom: .25rem;
+}
+
+.home__elec {
+  font-size: var(--small-font-size);
+  font-weight: 400;
+  color: var(--text-color);
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+}
+
+.home__elec i {
+  color: var(--first-color);
+}
+
+.home__img {
+  width: 280px;
+  justify-self: center;
+}
+
+.home__car {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4rem;
+  margin-bottom: 2rem;
+}
+
+.home__car-name {
+  font-size: .625rem;
+  font-weight: 400;
+  color: var(--text-color-light);
+}
+
+.home__car-data {
+  text-align: center;
+}
+
+.home__car-number {
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-medium);
+  margin-bottom: .25rem;
+}
+
+.home__car-icon {
+  background-color: var(--container-color);
+  border-radius: 50%;
+  padding: .376rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .875rem;
+  margin-bottom: .75rem;
+}
+
+.home__button {
+  position: relative;
+  border: 2px solid hsl(158, 89%, 30%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  font-size: var(--small-font-size);
+  color: var(--white-color);
+  font-weight: var(--font-medium);
+}
+
+.home__button::before {
+  content: '';
+  border: 2px solid hsl(158, 98%, 43%);
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 12px hsl(158, 98%, 43%);
+  transition: .3s;
+  animation: button 3s infinite;
+}
+
+.home .shape__big,
+.home .shape__small {
+  position: absolute;
+}
+
+.home .shape__big {
+  left: -9rem;
+  top: -4rem;
+}
+
+.home .shape__small {
+  right: -10rem;
+  bottom: 3rem;
+}
+
+/* Button animate */
+@keyframes button {
+  0% {
+    box-shadow: 0 0 12px hsl(158, 98%, 43%);
+  }
+
+  50% {
+    box-shadow: 0 0 24px hsl(158, 98%, 43%);
+  }
+}
+
+/*=============== BUTTON ===============*/
+.button {
+  display: inline-block;
+  background-color: var(--first-color);
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  border-radius: .25rem;
+  font-size: var(--normal-font-size);
+  transition: .3s;
+}
+
+.button:hover {
+  background-color: var(--first-color-alt);
+}
+
+/*=============== ABOUT ===============*/
+.about__container {
+  row-gap: 6rem;
+}
+
+.about__group {
+  position: relative;
+}
+
+.about__img {
+  width: 310px;
+  border-radius: .5rem;
+}
+
+.about__card {
+  width: 180px;
+  position: absolute;
+  right: 0;
+  bottom: -2.5rem;
+  background-color: hsla(0, 0%, 100%, .1);
+  backdrop-filter: blur(16px);
+  padding: 1rem .75rem;
+  text-align: center;
+  border-radius: 1.25rem;
+}
+
+.about__card-title {
+  font-size: var(--h3-font-size);
+  margin-bottom: .5rem;
+}
+
+.about__card-description {
+  font-size: var(--smaller-font-size);
+}
+
+.about__title {
+  text-align: initial;
+  margin-bottom: 2rem;
+}
+
+.about__description {
+  margin-bottom: 2rem;
+}
+
+/*=============== POPULAR ===============*/
+.popular__container {
+  padding-top: 1rem;
+
+
+}
+
+
+.popular__card {
+  width: calc(100% / 3 - 20px);
+  margin-right: 30px;
+  float: left;
+
+  position: relative;
+  width: 238px;
+  background-color: var(--container-color);
+  padding: 2rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 3.5rem;
+  overflow: hidden;
+}
+
+.clearfix {
+  clear: both;
+}
+.popular__card .shape__smaller {
+  position: absolute;
+  top: -2.5rem;
+  left: -2.5rem;
+
+}
+
+.popular__title,
+.popular__subtitle,
+.popular__img {
+  position: relative;
+}
+
+.popular__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: .25rem;
+}
+
+.popular__subtitle {
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.popular__img {
+  width: 160px;
+  margin: .75rem 0 1.25rem 1.5rem;
+  transition: .3s;
+}
+
+.popular__data {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: .5rem 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.popular__data-group {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-size: var(--smaller-font-size);
+  color: var(--white-color);
+}
+
+.popular__data i {
+  font-size: 1rem;
+}
+
+.popular__price {
+  font-size: var(--h3-font-size);
+}
+
+.popular__button {
+  border: none;
+  outline: none;
+  padding: .75rem 1rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem 0 1rem 0;
+  cursor: pointer;
+}
+
+.popular__button i {
+  font-size: 1.25rem;
+}
+
+.popular__card:hover .popular__img {
+  transform: translateY(-.25rem);
+}
+
+/* Swiper class */
+.swiper-pagination-bullet {
+  background: var(--text-color);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--first-color);
+}
+
+/*=============== FEATURES ===============*/
+.features {
+  overflow: hidden;
+  position: relative;
+}
+
+.features__container {
+  padding-top: 2rem;
+  grid-template-columns: 285px;
+  justify-content: center;
+}
+
+.features__group {
+  display: grid;
+  position: relative;
+  z-index: 10;
+}
+
+.features__img {
+  height: 200px;
+  justify-self: center;
+}
+
+.features__card {
+  width: 112px;
+  background-color: hsla(0, 0%, 100%, .1);
+  backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  padding: .75rem 2rem;
+  text-align: center;
+  color: var(--title-color);
+  position: absolute;
+}
+
+.features__card-1 {
+  top: 4rem;
+  left: 1.5rem;
+}
+
+.features__card-2 {
+  top: 8rem;
+  right: 1rem;
+}
+
+.features__card-3 {
+  left: 1.5rem;
+  bottom: 2rem;
+}
+
+.features__card-title {
+  font-size: var(--h3-font-size);
+  margin-bottom: .25rem;
+}
+
+.features__card-description {
+  font-size: var(--smaller-font-size);
+}
+
+.features__map {
+  max-width: initial;
+  width: 450px;
+  position: absolute;
+  top: 8rem;
+  left: -3rem;
+  margin: auto;
+  transform: rotate(-22deg);
+}
+
+/*=============== FEATURED ===============*/
+.featured__container {
+  padding-top: 1rem;
+}
+
+.featured__filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.featured__item {
+  width: 48px;
+  height: 48px;
+  border: none;
+  outline: none;
+  padding: .75rem;
+  border-radius: .75rem;
+  background-color: var(--container-color);
+  color: var(--white-color);
+  font-size: var(--normal-font-size);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.featured__item img {
+  width: 1.5rem;
+}
+
+.featured__item span,
+.featured__item img {
+  opacity: .3;
+  transition: .3s;
+}
+
+.featured__item:hover {
+  background-color: var(--first-color);
+}
+
+.featured__item:hover span,
+.featured__item:hover img {
+  opacity: 1;
+}
+
+.featured__content {
+  grid-template-columns: 228px;
+  row-gap: 2.5rem;
+  justify-content: center;
+}
+
+.featured__card {
+  position: relative;
+  background-color: var(--container-color);
+  padding: 2rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+}
+
+.featured__card .shape__smaller {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.featured__title,
+.featured__subtitle,
+.featured__img {
+  position: relative;
+}
+
+.featured__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: .25rem;
+}
+
+.featured__subtitle {
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  font-weight: 400;
+}
+
+.featured__img {
+  width: 180px;
+  margin: 1.5rem 0;
+  transition: .3s;
+}
+
+.featured__price {
+  font-size: var(--h3-font-size);
+}
+
+.featured__button {
+  border: none;
+  outline: none;
+  padding: .75rem 1rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem 0 1rem 0;
+  cursor: pointer;
+}
+
+.featured__button i {
+  font-size: 1.25rem;
+}
+
+.featured__card:hover .featured__img {
+  transform: translateX(-.25rem);
+}
+
+/* Active link featured */
+.active-featured {
+  background-color: var(--first-color);
+}
+
+.active-featured span,
+.active-featured img {
+  opacity: 1;
+}
+
+/*=============== OFFER ===============*/
+.offer {
+  position: relative;
+}
+
+.offer__container {
+  grid-template-rows: max-content 224px;
+}
+
+.offer__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.offer__data,
+.offer__img {
+  position: relative;
+}
+
+.offer__data {
+  text-align: center;
+}
+
+.offer__title {
+  margin-bottom: 2rem;
+}
+
+.offer__description {
+  margin-bottom: 3rem;
+}
+
+.offer__img {
+  position: absolute;
+  max-width: initial;
+  width: 400px;
+  bottom: 2rem;
+  right: -5.5rem;
+}
+
+/*=============== LOGOS ===============*/
+.logos__img {
+  width: 40px;
+  opacity: .4;
+  transition: .3s;
+}
+
+.logos__container {
+  grid-template-columns: repeat(3, max-content);
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding-bottom: 2rem;
+}
+
+.logos__img:hover {
+  opacity: 1;
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer .shape__big,
+.footer .shape__small {
+  position: absolute;
+}
+
+.footer .shape__big {
+  width: 300px;
+  height: 300px;
+  left: -12rem;
+  top: 6rem;
+}
+
+.footer .shape__small {
+  right: -13rem;
+  bottom: -6rem;
+}
+
+.footer__container {
+  row-gap: 2.5rem;
+  position: relative;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  color: var(--title-color);
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 1.25rem;
+  transition: .3s;
+}
+
+.footer__logo i {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.footer__logo:hover {
+  color: var(--first-color);
+}
+
+.footer__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: 1.25rem;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}
+
+.footer__link,
+.footer__social-link {
+  color: var(--text-color);
+  transition: .3s;
+}
+
+.footer__link:hover,
+.footer__social-link:hover {
+  color: var(--title-color);
+}
+
+.footer__social {
+  display: flex;
+  column-gap: 1.5rem;
+}
+
+.footer__social-link {
+  font-size: 1.25rem;
+}
+
+.footer__copy {
+  display: block;
+  margin-top: 4.5rem;
+  text-align: center;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+}
+
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar {
+  width: .6rem;
+  background-color: hsl(219, 4%, 16%);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(219, 4%, 24%);
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(219, 4%, 32%);
+}
+
+/*=============== SCROLL UP ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -30%;
+  background-color: hsla(0, 0%, 100%, .1);
+  backdrop-filter: blur(16px);
+  display: inline-flex;
+  padding: .45rem;
+  border-radius: .5rem;
+  font-size: 1.15rem;
+  color: var(--white-color);
+  z-index: var(--z-tooltip);
+  transition: .4s;
+}
+
+.scrollup:hover {
+  transform: translateY(-.25rem);
+}
+
+/* Show Scroll Up*/
+.show-scroll {
+  bottom: 3rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .home__car {
+    column-gap: 2rem;
+  }
+
+  .about__card {
+    width: 150px;
+  }
+
+  .offer__container {
+    grid-template-rows: max-content 180px;
+  }
+
+  .offer__img {
+    width: 340px;
+  }
+
+  .logos__container {
+    gap: 2.5rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .about__group {
+    width: 350px;
+    justify-self: center;
+  }
+
+  .features__map {
+    left: 0;
+    right: 0;
+  }
+
+  .featured__content {
+    grid-template-columns: repeat(2, 228px);
+  }
+
+  .offer__container {
+    grid-template-rows: initial;
+    grid-template-columns: .5fr;
+    justify-content: center;
+  }
+
+  .offer__img {
+    position: relative;
+    bottom: initial;
+    right: initial;
+  }
+
+  .offer__data {
+    margin-bottom: 4rem;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .section {
+    padding: 7rem 0 2rem;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+
+  .nav__toggle,
+  .nav__close {
+    display: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+    padding-top: 0;
+  }
+
+  .nav__link {
+    font-size: var(--normal-font-size);
+    text-transform: initial;
+  }
+
+  .about__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logos__container {
+    gap: 4rem 8rem;
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1040px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .shape__big {
+    width: 500px;
+    height: 500px;
+  }
+
+  .shape__small {
+    width: 400px;
+    height: 400px;
+  }
+
+  .home__container {
+    padding-top: 2rem;
+  }
+
+  .home__img {
+    width: 380px;
+  }
+
+  .home__car {
+    column-gap: 7rem;
+  }
+
+  .home__car-icon {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .about__container {
+    column-gap: 6rem;
+    align-items: center;
+  }
+
+  .about__group,
+  .about__img {
+    width: 480px;
+  }
+
+  .about__card {
+    width: 198px;
+    padding: 1rem 1.25rem;
+  }
+
+  .about__description {
+    padding-right: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .popular__container {
+    width: 875px;
+    padding-top: 3rem;
+  }
+
+  .popular__card {
+    width: 258px;
+    border-radius: 1.25rem;
+    margin-bottom: 5rem;
+  }
+
+  .popular__img {
+    width: 180px;
+    margin: .75rem 0 1.2rem 2rem;
+  }
+
+  .features__container {
+    padding: 2rem 0 3rem;
+  }
+
+  .features__img {
+    width: 200px;
+  }
+
+  .features__card {
+    width: 127px;
+    padding: .75rem 2.5rem;
+  }
+
+  .features__card-1 {
+    left: -1rem;
+  }
+
+  .features__card-2 {
+    right: -2.5rem;
+  }
+
+  .features__card-3 {
+    bottom: 7rem;
+    left: -1rem;
+  }
+
+  .features__map {
+    width: 650px;
+    top: 11rem;
+  }
+
+  .featured__container {
+    padding-bottom: 2.5rem;
+  }
+
+  .featured__filters {
+    column-gap: 2rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .featured__item {
+    width: 52px;
+    height: 52px;
+  }
+
+  .featured__item img {
+    width: 2rem;
+  }
+
+  .featured__content {
+    grid-template-columns: repeat(3, 248px);
+    gap: 4rem;
+  }
+
+  .offer__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .offer__data,
+  .offer__title {
+    text-align: initial;
+  }
+
+  .offer__data {
+    margin-bottom: 0;
+  }
+
+  .offer__description {
+    padding-right: 6rem;
+  }
+
+  .offer__img {
+    width: 450px;
+  }
+
+  .logos__container {
+    grid-template-columns: repeat(6, max-content);
+  }
+
+  .logos__img {
+    width: 50px;
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(4, max-content);
+    justify-content: space-between;
+  }
+
+  .footer__logo {
+    column-gap: .5rem;
+  }
+
+  .footer__logo i {
+    font-size: 2rem;
+  }
+
+  .footer__title {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer__links {
+    row-gap: .75rem;
+  }
+
+  .footer__social-link {
+    font-size: 1.5rem;
+  }
+
+  .footer__copy {
+    margin-top: 8rem;
+    padding-bottom: 1rem;
+  }
+
+  .scrollup {
+    right: 3rem;
+  }
+}
+  </style>
+   
+
+
+</head>
+
+
+<!-- body -->
+<body>
+
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+
+        <!--nav container-->
+        <nav class="nav container">
+
+            <!--logo-->
+            <a href="#" class="nav__logo">
+                <i class="ri-steering-line"></i>
+                e-Shark
+            </a>
+
+            <!--nav bar item-->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#popular" class="nav__link">Services</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#featured" class="nav__link">Testimonial</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#featured" class="nav__link">Demo</a>
+                    </li>
+                </ul>
+
+                <!--nav close-->
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <!-- Toggle button -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line"></i>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+            <div class="shape shape__big"></div>
+            <div class="shape shape__small"></div>
+
+            <div class="home__container container grid">
+                <div class="home__data">
+                    <h1 class="home__title">
+                        Present Your Product To Investors
+                    </h1>
+
+                    <h2 class="home__subtitle">
+                        Mission e-shark
+                    </h2>
+
+                    <h3 class="home__elec">
+                        <i class="ri-flashlight-fill"></i> Groww Startup
+                    </h3>
+                </div>
+
+                <img src="img/home.png" alt="" class="home__img">
+
+                <div class="home__car">
+                    <div class="home__car-data">
+                        <div class="home__car-icon">
+                             <!--<i class="ri-temp-cold-line"></i>-->
+                            <i class="ri-arrow-up-circle-fill"></i>
+                        </div>
+                        <h2 class="home__car-number">1000+</h2>
+                        <h3 class="home__car-name">Registered StartUps</h3>
+                    </div>
+
+                    <div class="home__car-data">
+                        <div class="home__car-icon">
+                            <!-- <i class="ri-dashboard-3-line"></i> -->
+                            <i class="ri-account-circle-fill"></i>
+                        </div>
+                        <h2 class="home__car-number">1500+</h2>
+                        <h3 class="home__car-name">Investors</h3>
+                    </div>
+
+                    <div class="home__car-data">
+                        <div class="home__car-icon">
+                            <i class="ri-flashlight-fill"></i>
+                        </div>
+                        <h2 class="home__car-number">94%</h2>
+                        <h3 class="home__car-name">Success Rate</h3>
+                    </div>
+                </div>
+
+                <a href="#" class="home__button">JOIN</a>
+            </div>
+        </section>
+
+
+
+        <!--==================== ABOUT ====================-->
+        <section class="about section" id="about">
+            <div class="about__container container grid">
+                <div class="about__group">
+                    <img src="img/about.png" alt="" class="about__img">
+
+                    <div class="about__card">
+                        <h3 class="about__card-title">700+</h3>
+                        <p class="about__card-description">
+                            Indian Startups gets the direct investment.
+                         
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about__data">
+
+                    <h2 class="section__title about__title">
+                        Mission is Provide Plateform <br> To Indian Startup To attract Investment. 
+                    </h2>
+
+                    <p class="about__description">
+                        e-Shark Provide a e-plateform to indian startups for showing
+                        Their product to investors for getting funding and investment 
+                        To further growth of Stratups.<br>
+                        #eShark-For-IndianStartup.
+                    </p>
+
+                    <a href="#" class="button">Know more</a>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!--==================== POPULAR ====================-->
+        <section class="popular section" id="popular">
+            <h2 class="section__title">
+                Explore All Services <br> Provided By e-Shark
+            </h2>
+
+            <div class="popular__container container swiper">
+                <div class="swiper-wrapper">
+
+                    <!--artical 1-->
+
+                    <article class="popular__card swiper-slide">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="popular__title">Investors</h1>
+                        <h3 class="popular__subtitle">You can Invest in indian startup to make your money dynamic</h3>
+
+                        <img src="img/popular1.png" alt="" class="popular__img">
+
+                        <div class="popular__data">
+                            <div class="popular__data-group">
+                                <i class="ri-dashboard-3-line"></i> 1 Year Policy
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-funds-box-line"></i>99 % Grow
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-charging-pile-2-line"></i> Avg Revenue
+                            </div>
+                        </div>
+
+                        <h3 class="popular__price">$175,900</h3>
+
+                        <button class="button popular__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                <!--artical 2-->
+                    <article class="popular__card swiper-slide">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="popular__title">StartUps</h1>
+                        <h3 class="popular__subtitle">You Can Join e-Shark Club For Attracting Investment And Funding.</h3>
+
+                        <img src="img/popular2.png" alt="" class="popular__img">
+
+                        <div class="popular__data">
+                            <div class="popular__data-group">
+                                <i class="ri-dashboard-3-line"></i> 2 Year Policy
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-funds-box-line"></i> 90 % Chance
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-charging-pile-2-line"></i> Avg Investment
+                            </div>
+                        </div>
+
+                        <h3 class="popular__price">$114,900</h3>
+
+                        <button class="button popular__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                <!--artical 3-->
+                    <article class="popular__card swiper-slide">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="popular__title"> Mentors </h1>
+                        <h3 class="popular__subtitle">Our Mentors To Help The New StartUps For Getting Finding And Investment.</h3>
+
+                        <img src="img/popular3.png" alt="" class="popular__img">
+
+                        <div class="popular__data">
+                            <div class="popular__data-group">
+                                <i class="ri-dashboard-3-line"></i> 1 hour Session
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-funds-box-line"></i> 100%
+                            </div>
+                            <div class="popular__data-group">
+                                <i class="ri-charging-pile-2-line"></i> Fee
+                            </div>
+                        </div>
+
+                        <h3 class="popular__price">$100</h3>
+
+                        <button class="button popular__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+                   
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <div class="clearfix"></div>
+
+        <!--==================== FEATURES ====================-->
+        <section class="features section">
+            <h2 class="section__title">
+                Steps To Join e-Shark
+            </h2>
+
+            <div class="features__container container grid">
+                <div class="features__group">
+                    <img src="img/features.png" alt="" class="features__img">
+
+                    <div class="features__card features__card-1">
+                        <h3 class="features__card-title">JOIN</h3>
+                        <p class="features__card-description">Request for <br> idea presentation</p>
+                        </p>
+                    </div>
+
+                    <div class="features__card features__card-2">
+                        <h3 class="features__card-title">Login</h3>
+                        <p class="features__card-description">first you need to register <br> and login your portal.</p>
+                    </div>
+
+                    <div class="features__card features__card-3">
+                        <h3 class="features__card-title">Team </h3>
+                        <p class="features__card-description">select a team <br> which all present their product to investors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <img src="img/map.svg" alt="" class="features__map">
+        </section>
+
+
+
+        <!--==================== FEATURED ====================-->
+        <section class="featured section" id="featured">
+            <h2 class="section__title">
+                Our Client StartUps & Investors
+            </h2>
+
+            <div class="featured__container container">
+                <ul class="featured__filters">
+                    <li>
+                        <button class="featured__item active-featured" data-filter="all">
+                            <span>All</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".tesla">
+                            <img src="img/logo3.png" alt="">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".audi">
+                            <img src="img/logo2.png" alt="">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".porsche">
+                            <img src="img/logo1.png" alt="">
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="featured__content grid">
+                    <article class="featured__card mix tesla">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="featured__title">shopify</h1>
+
+                        <h3 class="featured__subtitle">e-commarce</h3>
+
+                        <img src="img/featured1.png" alt="" class="featured__img">
+
+                        <h3 class="featured__price">$98,900</h3>
+
+                        <button class="button featured__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                    <article class="featured__card mix tesla">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="featured__title">Perspective 3D</h1>
+
+                        <h3 class="featured__subtitle">3D solution</h3>
+
+                        <img src="img/featured2.png" alt="" class="featured__img">
+
+                        <h3 class="featured__price">$45,900</h3>
+
+                        <button class="button featured__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                    <article class="featured__card mix audi">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="featured__title">may mobility</h1>
+
+                        <h3 class="featured__subtitle">E-car</h3>
+
+                        <img src="img/featured3.png" alt="" class="featured__img">
+
+                        <h3 class="featured__price">$175,900</h3>
+
+                        <button class="button featured__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                    <article class="featured__card mix porsche">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="featured__title">Trilogy</h1>
+
+                        <h3 class="featured__subtitle">Software solution</h3>
+
+                        <img src="img/featured4.png" alt="" class="featured__img">
+
+                        <h3 class="featured__price">$126,900</h3>
+
+                        <button class="button featured__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+
+                    <article class="featured__card mix porsche">
+                        <div class="shape shape__smaller"></div>
+
+                        <h1 class="featured__title">MEP Services</h1>
+
+                        <h3 class="featured__subtitle">mech & elec</h3>
+
+                        <img src="img/featured5.png" alt="" class="featured__img">
+
+                        <h3 class="featured__price">$126,900</h3>
+
+                        <button class="button featured__button">
+                            <i class="ri-shopping-bag-2-line"></i>
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!--==================== OFFER ====================-->
+        <section class="offer section">
+            <div class="offer__container container grid">
+                <img src="img/offer-bg.png" alt="" class="offer__bg">
+
+                <div class="offer__data">
+                    <h2 class="section__title offer__title">
+                        Do You Want To Receive <br> Special Offers?
+                    </h2>
+
+                    <p class="offer__description">
+                        Be the first to receive all the Notification and about 
+                        Investors and new Startups by email by subscribing to our
+                        mailing list.
+                    </p>
+
+                    <a href="#" class="button">
+                        Subscribe Now
+                    </a>
+                </div>
+
+                <img src="img/offer.png" alt="" class="offer__img">
+            </div>
+        </section>
+
+
+
+
+        <!--==================== LOGOS ====================-->
+        <section class="logos section">
+            <div class="logos__container container grid">
+                <div class="logos__content">
+                    <img src="img/logo1.png" alt="" class="logos__img">
+                </div>
+
+                <div class="logos__content">
+                    <img src="img/logo2.png" alt="" class="logos__img">
+                </div>
+
+                <div class="logos__content">
+                    <img src="img/logo3.png" alt="" class="logos__img">
+                </div>
+
+                <div class="logos__content">
+                    <img src="img/logo4.png" alt="" class="logos__img">
+                </div>
+
+                <div class="logos__content">
+                    <img src="img/logo5.png" alt="" class="logos__img">
+                </div>
+
+                <div class="logos__content">
+                    <img src="img/logo6.png" alt="" class="logos__img">
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer section">
+        <div class="shape shape__big"></div>
+        <div class="shape shape__small"></div>
+
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">
+                    <i class="ri-steering-line"></i> e-Shark
+                </a>
+
+                <p class="footer__description">
+                  e-Shark is a platform for startups to showcase their <br>
+                  products & secure investment.Entrepreneurs pitch their <br>
+                  business ideas to a panel of potential investors,referred <br>
+                  to as "sharks".The objective of the platform is to help <br>
+                  startups grow by securing funding from investors.<br>
+                </p>
+
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">
+                    Company
+                </h3>
+
+                <ul class="footer__links">
+                    <li>
+                        <a href="#" class="footer__link">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Join</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">History</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Carrier</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">
+                    Information
+                </h3>
+
+                <ul class="footer__links">
+                    <li>
+                        <a href="#" class="footer__link">Request a quote</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Find a Investor</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Contact us</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link">Services</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">
+                    Follow us
+                </h3>
+
+                <ul class="footer__social">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+                        <i class="ri-twitter-line"></i>
+                    </a>
+                </ul>
+            </div>
+        </div>
+
+        <span class="footer__copy">
+            #R@B29; e-Shark. All rigths reserved
+        </span>
+    </footer>
+
+
+
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL ===============-->
+    <script src="assets/js/scrollreveal.min.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="assets/js/swiper-bundle.min.js"></script>
+
+    <!--=============== MIXITUP JS ===============-->
+    <script src="assets/js/mixitup.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
